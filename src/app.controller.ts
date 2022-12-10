@@ -1,12 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Delete } from '@nestjs/common';
 
-@Controller()
+@Controller("property")
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  @Get("all")
+  getAllProperties () {
+    return ["all properties"];
+  }
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get(":id")
+  getPropertyByID () {
+    return "one :id"
+  }
+
+  @Delete(":id")
+  deletePropertyByID () {
+    return `Deleting property...`
   }
 }
