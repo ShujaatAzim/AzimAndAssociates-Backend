@@ -4,12 +4,12 @@ import { Controller, Get, Delete } from '@nestjs/common';
 export class AppController {
   @Get("all")
   getAllProperties () {
-    return ["all properties"];
+    return ["array of all properties"];
   }
 
   @Get(":id")
   getPropertyByID () {
-    return "one :id"
+    return "property # :id"
   }
 
   @Delete(":id")
