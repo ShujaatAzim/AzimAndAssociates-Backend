@@ -11,7 +11,7 @@ export class AuthService {
     return { message: "I have successfully signed up!" };
   }
 
-  delete() {
+  logout() {
     return { message: "Session terminated." }
   }
 }
