@@ -4,12 +4,12 @@ import { Controller, Get, Delete, Param } from '@nestjs/common';
 export class AppController {
   @Get("all")
   getAllProperties () {
-    return ["array of all properties"];
+    return ["array of all properties"]
   }
 
   @Get(":id")
   getPropertyByID (@Param('id') id: string) {
-    return `Page for property with id: ${id}`;
+    return `Page for property with id: ${id}`
   }
 
   @Delete(":id")
