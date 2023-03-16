@@ -1,19 +1,19 @@
 import { Controller, Get, Delete, Param } from '@nestjs/common';
 
-@Controller("property")
+@Controller('property')
 export class AppController {
-  @Get("all")
+  @Get('all')
   getAllProperties () {
-    return ["array of all properties"]
+    return ['array of all properties']
   }
 
-  @Get(":id")
-  getPropertyByID (@Param('id') id: string) {
+  @Get(':id')
+  getPropertyByID (@Param('id') id: number) {
     return `Page for property with id: ${id}`
   }
 
-  @Delete(":id")
-  deletePropertyByID (@Param('id') id: string) {
+  @Delete(':id')
+  deletePropertyByID (@Param('id') id: number) {
     return `Deleting property with id: ${id}...`
   }
 }
