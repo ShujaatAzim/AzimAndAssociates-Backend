@@ -1,8 +1,3 @@
-export const data = {
-  users: [],
-  properties: []
-}
-
 interface Property {
   tenants: Tenant[];
   leaseStart: Date;
@@ -14,4 +9,9 @@ interface Tenant {
   lastName: string;
   age: number;
   dob: Date;
+}
+
+export const data = {
+  users: [],
+  properties: []
 }
