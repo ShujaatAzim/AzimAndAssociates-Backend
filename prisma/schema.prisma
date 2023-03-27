@@ -9,3 +9,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  email String
+  hash String
+  firstName String
+  lastName String
+}
+
+model Property {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  address String
+  currentTenant1 String
+  currentTenant2 String
+  leaseStart DateTime
+  leaseEnd DateTime
+}
