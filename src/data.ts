@@ -13,5 +13,5 @@ interface Tenant {
 
 export const data = {
   users: [],
-  properties: []
-}
+  properties: [],
+};

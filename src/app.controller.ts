@@ -1,19 +1,12 @@
-import { Controller, Get, Delete, Param } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
 
-@Controller('property')
+@Controller()
 export class AppController {
-  @Get('all')
-  getAllProperties () {
-    return ['array of all properties']
-  }
+  constructor(private readonly appService: AppService) {}
 
-  @Get(':id')
-  getPropertyByID (@Param('id') id: number) {
-    return `Page for property with id: ${id}`
-  }
-
-  @Delete(':id')
-  deletePropertyByID (@Param('id') id: number) {
-    return `Deleting property with id: ${id}...`
+  @Get()
+  successfulConnection() {
+    return this.appService.successfulConnection();
   }
 }
