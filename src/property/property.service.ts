@@ -4,7 +4,10 @@ import { Get, Delete, Injectable } from '@nestjs/common';
 export class PropertyService {
   @Get()
   getAllProperties() {
-    return ['array of all properties'];
+    return [
+      { id: 1, property: 'property 1' },
+      { id: 2, property: 'property 2' },
+    ];
   }
 
   @Get()
