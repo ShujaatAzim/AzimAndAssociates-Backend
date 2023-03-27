@@ -1,20 +1,22 @@
 import { Controller, Get, Delete, Param } from '@nestjs/common';
+import { PropertyService } from './property.service';
 
 @Controller('property')
 export class PropertyController {
-  //
+  constructor(private readonly propertyService: PropertyService) {}
+
   @Get('all')
   getAllProperties() {
-    return ['array of all properties'];
+    return this.propertyService.getAllProperties();
   }
 
   @Get(':id')
   getPropertyByID(@Param('id') id: number) {
-    return `Page for property with id: ${id}`;
+    return this.propertyService.getPropertyByID(id);
   }
 
   @Delete(':id')
   deletePropertyByID(@Param('id') id: number) {
-    return `Deleting property with id: ${id}...`;
+    return this.propertyService.deletePropertyByID(id);
   }
 }
