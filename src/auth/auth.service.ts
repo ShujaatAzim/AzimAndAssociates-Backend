@@ -5,15 +5,15 @@ import { PrismaService } from '../prisma/prisma.service';
 export class AuthService {
   constructor(private prisma: PrismaService) {}
 
-  login() {
-    return {
-      message: 'I have successfully logged in!',
-    };
-  }
-
   register() {
     return {
       message: 'I have successfully registered!',
+    };
+  }
+
+  login() {
+    return {
+      message: 'I have successfully logged in!',
     };
   }
 
