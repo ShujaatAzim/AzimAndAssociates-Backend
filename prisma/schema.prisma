@@ -11,22 +11,34 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  email String
-  hash String
+  email     String   @unique
+  hash      String
   firstName String
-  lastName String
+  lastName  String
+}
+
+model Tenant {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  firstName String
+  lastName  String
+  dob       DateTime
+  Property  Property?
 }
 
 model Property {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  address String
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now())
+  address        String
+  tenantID       Int      @unique
+  tenant         Tenant   @relation(fields: [tenantID], references: [id])
   currentTenant1 String
-  currentTenant2 String
-  leaseStart DateTime
-  leaseEnd DateTime
+  currentTenant2 String?
+  leaseStart     DateTime
+  leaseEnd       DateTime
 }
