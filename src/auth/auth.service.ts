@@ -30,7 +30,9 @@ export class AuthService {
       console.error(error.message);
 
       throw new HttpException(
-        `Error creating new user: ${error}`,
+        error.code === 'P2002'
+          ? `Error creating new user: Credentials Taken.`
+          : `Error creating new user: ${JSON.stringify(error)}`,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
