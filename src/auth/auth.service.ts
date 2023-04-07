@@ -27,8 +27,6 @@ export class AuthService {
 
       return user;
     } catch (error) {
-      console.error(error.message);
-
       throw new HttpException(
         error.code === 'P2002'
           ? `Error creating new user: Credentials Taken.`
