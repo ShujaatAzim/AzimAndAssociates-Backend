@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthDto } from './dto';
 import * as argon from 'argon2';
@@ -36,13 +41,32 @@ export class AuthService {
     }
   }
 
-  login() {
-    return {
-      message: 'I have successfully logged in!',
-    };
+  async login(dto: AuthDto) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email: dto.email,
+      },
+    });
+
+    if (!user)
+      throw new HttpException(
+        'Email and/or Password is incorrect.',
+        HttpStatus.FORBIDDEN,
+      );
+
+    const verifyPassword = argon.verify(user.hash, dto.password);
+
+    if (!verifyPassword) {
+      throw new HttpException(
+        'Email and/or Password is incorrect.',
+        HttpStatus.FORBIDDEN,
+      );
+    }
+
+    return user;
   }
 
-  logout() {
+  async logout() {
     return {
       message: 'Session terminated.',
     };
