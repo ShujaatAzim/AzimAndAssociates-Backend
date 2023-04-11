@@ -45,19 +45,19 @@ export class AuthService {
 
     if (!user)
       throw new HttpException(
-        'Email and/or Password is incorrect.',
+        'Email is incorrect. Please try again.',
         HttpStatus.FORBIDDEN,
       );
 
-    const verifyPassword = argon.verify(user.hash, dto.password);
+    const verifyPassword = await argon.verify(user.hash, dto.password);
 
     if (!verifyPassword) {
       throw new HttpException(
-        'Email and/or Password is incorrect.',
+        'Password is incorrect. Please try again.',
         HttpStatus.FORBIDDEN,
       );
     }
-
+    delete user.hash;
     return user;
   }
 
