@@ -1,4 +1,8 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/prisma.service';
 import { RegisterDto, LoginDto } from './dto';
@@ -55,7 +59,10 @@ export class AuthService {
         HttpStatus.FORBIDDEN,
       );
 
-    const verifyPassword = await argon.verify(user.hash, dto.password);
+    const verifyPassword = await argon.verify(
+      user.hash,
+      dto.password,
+    );
 
     if (!verifyPassword) {
       throw new HttpException(

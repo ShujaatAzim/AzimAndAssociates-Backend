@@ -9,6 +9,10 @@ export class UserService {
     ];
   }
 
+  getCurrentUser(req) {
+    return req.user;
+  }
+
   getUserByID(id: number) {
     return { user: id };
   }

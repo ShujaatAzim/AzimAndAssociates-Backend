@@ -1,5 +1,13 @@
-import { Controller, Delete, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { UserService } from './user.service';
+import { JwtGuard } from 'src/guards';
 
 @Controller('user')
 export class UserController {
@@ -8,6 +16,12 @@ export class UserController {
   @Get('all')
   getAllUsers() {
     return this.userService.getAllUsers();
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('me')
+  getCurrentUser(@Req() req: Request) {
+    return this.userService.getCurrentUser(req);
   }
 
   @Get(':id')
