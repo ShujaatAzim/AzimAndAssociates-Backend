@@ -9,6 +9,7 @@ import {
 import { UserService } from './user.service';
 import { JwtGuard } from 'src/guards';
 
+@UseGuards(JwtGuard)
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
@@ -18,7 +19,6 @@ export class UserController {
     return this.userService.getAllUsers();
   }
 
-  @UseGuards(JwtGuard)
   @Get('me')
   getCurrentUser(@Req() req: Request) {
     return this.userService.getCurrentUser(req);
