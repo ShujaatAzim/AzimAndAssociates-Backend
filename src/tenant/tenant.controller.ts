@@ -1,6 +1,15 @@
-import { Controller, Get, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { TenantService } from './tenant.service';
+import { JwtGuard } from 'src/guards';
 
+// Should guards be used for all routes just in case?
+// @UseGuards(JwtGuard)
 @Controller('tenant')
 export class TenantController {
   constructor(private readonly tenantService: TenantService) {}
