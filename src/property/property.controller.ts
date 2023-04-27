@@ -1,6 +1,9 @@
 import { Controller, Get, Delete, Param } from '@nestjs/common';
 import { PropertyService } from './property.service';
+import { JwtGuard } from 'src/guards';
 
+// Should guards be used for all routes just in case?
+// @UseGuards(JwtGuard)
 @Controller('property')
 export class PropertyController {
   constructor(private readonly propertyService: PropertyService) {}
