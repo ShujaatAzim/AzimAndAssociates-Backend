@@ -6,7 +6,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { TenantService } from './tenant.service';
-import { JwtGuard } from 'src/guards';
+import { JwtGuard } from '../guards';
 
 // Should guards be used for all routes just in case?
 // @UseGuards(JwtGuard)

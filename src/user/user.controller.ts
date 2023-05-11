@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { JwtGuard } from 'src/guards';
+import { JwtGuard } from '../guards';
 
 @UseGuards(JwtGuard)
 @Controller('user')
