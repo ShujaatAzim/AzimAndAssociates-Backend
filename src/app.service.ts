@@ -3,6 +3,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   successfulConnection() {
-    return { connection_success: true };
+    return { app_running: true };
   }
 }
