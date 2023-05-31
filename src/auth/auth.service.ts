@@ -55,7 +55,7 @@ export class AuthService {
 
     if (!user)
       throw new HttpException(
-        'Email is incorrect. Please try again.',
+        'Email not found. Please try again.',
         HttpStatus.FORBIDDEN,
       );
 
@@ -66,7 +66,7 @@ export class AuthService {
 
     if (!verifyPassword) {
       throw new HttpException(
-        'Password is incorrect. Please try again.',
+        'Incorrect Password. Please try again.',
         HttpStatus.FORBIDDEN,
       );
     }
