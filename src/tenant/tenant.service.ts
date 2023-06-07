@@ -7,6 +7,7 @@ export class TenantService {
     return [
       { id: 1, tenant: 'tenant 1' },
       { id: 2, tenant: 'tenant 2' },
+      { id: 3, tenant: 'tenant 3' },
     ];
   }
 
