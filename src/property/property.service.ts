@@ -7,6 +7,7 @@ export class PropertyService {
     return [
       { id: 1, property: 'property 1' },
       { id: 2, property: 'property 2' },
+      { id: 3, property: 'property 3' },
     ];
   }
 
