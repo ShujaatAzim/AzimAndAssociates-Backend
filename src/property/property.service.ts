@@ -1,9 +1,16 @@
 import { Get, Delete, Injectable } from '@nestjs/common';
 
+interface Property {
+  id: number;
+  property: string;
+  address: string;
+  leaseURL: string;
+}
+
 @Injectable()
 export class PropertyService {
   @Get()
-  getAllProperties() {
+  getAllProperties(): Property[] {
     return [
       { id: 1, property: 'property 1', address: '', leaseURL: '' },
       { id: 2, property: 'property 2', address: '', leaseURL: '' },
