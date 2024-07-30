@@ -1,13 +1,9 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from '../prisma/prisma.service';
-import { RegisterDto, LoginDto } from './dto';
-import * as argon from 'argon2';
-import { ConfigService } from '@nestjs/config';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
+import { PrismaService } from '../prisma/prisma.service'
+import { RegisterDto, LoginDto } from './dto'
+import * as argon from 'argon2'
+import { ConfigService } from '@nestjs/config'
 
 @Injectable()
 export class AuthService {
@@ -33,16 +29,16 @@ export class AuthService {
           firstName: true,
           lastName: true,
         },
-      });
+      })
 
-      return this.signToken(user.id, user.email);
+      return this.signToken(user.id, user.email)
     } catch (error) {
       throw new HttpException(
         error.code === 'P2002'
           ? `Error creating new user: Email Taken.`
           : `Error creating new user: ${JSON.stringify(error)}`,
         HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      )
     }
   }
 
@@ -51,27 +47,24 @@ export class AuthService {
       where: {
         email: dto.email,
       },
-    });
+    })
 
     if (!user)
       throw new HttpException(
         'Email not found. Please try again.',
         HttpStatus.FORBIDDEN,
-      );
+      )
 
-    const verifyPassword = await argon.verify(
-      user.hash,
-      dto.password,
-    );
+    const verifyPassword = await argon.verify(user.hash, dto.password)
 
     if (!verifyPassword) {
       throw new HttpException(
         'Incorrect Password. Please try again.',
         HttpStatus.FORBIDDEN,
-      );
+      )
     }
 
-    return this.signToken(user.id, user.email);
+    return this.signToken(user.id, user.email)
   }
 
   private async signToken(
@@ -81,23 +74,23 @@ export class AuthService {
     const payload = {
       sub: userId,
       email: email,
-    };
+    }
 
-    const secret = this.config.get('JWT_SECRET');
+    const secret = this.config.get('JWT_SECRET')
 
     const token = await this.jwt.signAsync(payload, {
       expiresIn: '10m',
       secret: secret,
-    });
+    })
 
     return {
       access_token: token,
-    };
+    }
   }
 
   async logout() {
     return {
       message: 'Session terminated.',
-    };
+    }
   }
 }
